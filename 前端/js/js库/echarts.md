@@ -1,5 +1,13 @@
 # echarts
 
+## api
+
+init(实例，theme?,opts?) 初始化
+
+connect 将多个图表的图例关联
+![../../assert/img/connect实现图.png]
+disconnected
+
 ## option
 
 ```js

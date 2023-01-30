@@ -14,7 +14,8 @@
 -   可用 document.cookie = '...' 来修改。
 
 其缺点：
-
+- 安全性差，存储在浏览器中容易被恶意查看。（`document.getCoolie()`）
+-   只能存储ASCII码字符串。
 -   存储大小限制为 4KB。
 -   http 请求时需要发送到服务端，增加请求数量。
 -   只能用 document.cookie = '...' 来修改，太过简陋。
@@ -22,7 +23,7 @@
 ### 2、localStorage 和 sessionStorage
 
 -   HTML5 专门为存储来设计的，最大可存 5M。
--   API 简单易用， setItem getItem。
+-   API 简单易用。
 -   不会随着 http 请求被发送到服务端。
 
 它们的区别：
