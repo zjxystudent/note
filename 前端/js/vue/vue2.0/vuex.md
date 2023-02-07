@@ -1,0 +1,1 @@
+在vuex中实现对state的变化都是通过mutations，action就是一个装饰器在mutation外封装了一个异步。

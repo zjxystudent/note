@@ -47,3 +47,33 @@
 - **隐私与安全**（Privacy & Security）这两个概念相关但不同。隐私是指允许人们私下从事其业务，而不是监视他们或收集您绝对不需要的更多数据。安全性是指以安全的方式构建您的网站，以使恶意用户无法从您或您的用户那里窃取信息。
 
 # 跨域资源共享 CORS（Cross-origin Resource Sharing ）
+
+CORS 是 HTTP 的一部分，它允许服务端来指定哪些主机可以从这个服务端加载资源。
+
+## 源（Origin）
+
+Web 内容的源由用于访问它的 URL 的方案（协议）、主机名（域名）和端口定义。只有当协议、主机和端口都匹配时，两个对象才具有相同的源。
+
+## 同源策略
+
+同源策略是一个重要的安全策略，它用于限制一个源的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+
+![alt](../../assert/Excalidraw/origin.excalidraw.svg)
+
+## 实现
+
+- 在服务器端设置http的header
+
+```js
+// node.js express
+app.get('/listUsers', function (req, res) {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
+   ...
+})
+```
+
+# 参考资料
+
+1. [mdn 浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
+2. [15 张精美动图全面讲解 CORS](https://juejin.cn/post/6856556746706518024)
+3. [cors](https://web.dev/cross-origin-resource-sharing/?utm_source=devtools)
