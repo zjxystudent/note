@@ -425,6 +425,26 @@ const FOO_KEY = Symbol('foo');
 
 上面代码将导致其他脚本都无法引用`FOO_KEY`。但这样也有一个问题，就是如果多次执行这个脚本，每次得到的`FOO_KEY`都是不一样的。虽然 Node 会将脚本的执行结果缓存，一般情况下，不会多次执行同一个脚本，但是用户可以手动清除缓存，所以也不是绝对可靠。
 
+# `...`扩展符
+
+js 中使用`...`扩展符,数量较大在65000以上时进行push会出错，
+由于
+```
+const item=[]
+const Items=new Array(1000000)
+item.push(...Items)
+```
+等同于
+
+```
+
+var item = [];
+var Items = new Array(1000000);
+item.push.apply(item, Items);
+```
+apply() 接受参数的有上限的65000
+https://juejin.cn/post/7160449924209836039
+
 # 参考资料
 
 1. [简书 《了解JS中的WeakMaps》 魂斗驴  ](https://www.jianshu.com/p/2cfb4d05e4c8)
