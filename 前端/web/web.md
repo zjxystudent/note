@@ -20,7 +20,12 @@
 -   http 请求时需要发送到服务端，增加请求数量。
 -   只能用 document.cookie = '...' 来修改，太过简陋。
 
-### 2、localStorage 和 sessionStorage
+### 2、session
+
+是存储在服务器的
+
+
+### localStorage 和 sessionStorage
 
 -   HTML5 专门为存储来设计的，最大可存 5M。
 -   API 简单易用。
@@ -72,6 +77,20 @@ app.get('/listUsers', function (req, res) {
 })
 ```
 
+
+# 攻击
+
+## 被动攻击
+
+### 跨站脚本攻击 XSS（Cross-Site Scripting）
+
+在浏览器中运行非法的html标签或JavaScript进行的一种攻击。
+
+
+渐进式 Web 应用 （PWA）
+
+SEO简介
+全称：Search Engine Optimization，搜索引擎优化。
 # 参考资料
 
 1. [mdn 浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
