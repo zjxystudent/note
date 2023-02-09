@@ -445,8 +445,30 @@ item.push.apply(item, Items);
 apply() 接受参数的有上限的65000
 https://juejin.cn/post/7160449924209836039
 
+
+# 箭头函数
+
+## 箭头函数中的this
+1.1 function函数
+var a = 0;
+function foo(){
+    console.log(this);
+    console.log(this.a);
+}
+foo(); // 1. window; 2. 0
+1.2 箭头函数
+// 在箭头函数中
+var foo = () => {
+    console.log(this);
+    console.log(this.a)
+};
+foo();// 1. window; 2. 0
+
+### 
+
 # 参考资料
 
 1. [简书 《了解JS中的WeakMaps》 魂斗驴  ](https://www.jianshu.com/p/2cfb4d05e4c8)
 2. javaScript高级程序设计（第4版）
-2. [《ECMAScript 6 入门 》阮一峰](https://es6.ruanyifeng.com/#docs/symbol)
+3. [《ECMAScript 6 入门 》阮一峰](https://es6.ruanyifeng.com/#docs/symbol)
+4. [JS-箭头函数中的this的指向](https://blog.csdn.net/zhq2005095/article/details/70666833)
