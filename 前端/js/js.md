@@ -109,9 +109,44 @@ obj?.a?.b ?? 'hello world' // hello world
 ```
 
 # 原型和原型链
+
+## 原型链污染
+
 # 函数作用域（scope）
 
+# 立即调用函数表达式 IIFE
 
+是一个在定义时就会立即执行的 JavaScript 函数
+。
+```js
+(function () {
+    statements
+})();
+```
+
+这是一个被称为 [自执行匿名函数] (一个 JavaScript 函数 在定义后立即执行。)的设计模式，主要包含两部分。第一部分是包围在 圆括号运算符` () `里的一个匿名函数，这个匿名函数拥有独立的词法作用域。这不仅避免了外界访问此 IIFE 中的变量，而且又不会污染全局作用域。
+
+第二部分再一次使用 () 创建了一个立即执行函数表达式，JavaScript 引擎到此将直接执行函数。
+
+示例
+当函数变成立即执行的函数表达式时，表达式中的变量不能从外部访问。
+```js
+(function () {
+    var name = "Barry";
+})();
+// 无法从外部访问变量 name
+name // 抛出错误："Uncaught ReferenceError: name is not defined"
+```
+将 IIFE 分配给一个变量，不是存储 IIFE 本身，而是存储 IIFE 执行后返回的结果。
+
+```js
+var result = (function () {
+    var name = "Barry";
+    return name;
+})();
+// IIFE 执行后返回的结果：
+result; // "Barry"
+```
 
 # 闭包（Closures）
 
@@ -199,6 +234,7 @@ window.lives = 30 // 还有三十条命
 简明起见，我用了中文 :)
 
 那么在其他的 JS 文件，就可以使用 window.奖励一条命() 来涨命，使用 window.死一条命() 来让角色掉一条命。
+
 # 什么情况会引起内存泄漏(无法释放已经不使用的内存)？
 
 虽然有垃圾回收机制但是我们编写代码操作不当还是会造成内存泄漏。
@@ -208,8 +244,10 @@ window.lives = 30 // 还有三十条命
     解决：使用严格模式避免。
     
 2.  闭包引起的内存泄漏  
-    原因：闭包可以维持函数内局部变量，使其得不到释放。  
-    解决：将事件处理函数定义在外部，解除闭包,或者在定义事件处理函数的外部函数中，删除对dom的引用。
+原因：由于ie浏览器的垃圾回收基于计数策略，如果两个对象之间形成了循环应用，那么这两个对象都无法回收
+解决：将循环应用中的变量设为NULL
+    <!-- 原因：闭包可以维持函数内局部变量，使其得不到释放。  
+    解决：将事件处理函数定义在外部，解除闭包,或者在定义事件处理函数的外部函数中，删除对dom的引用。 -->
     
 3.  没有清理的DOM元素引用  
     原因：虽然别的地方删除了，但是对象中还存在对dom的引用  
@@ -222,8 +260,22 @@ window.lives = 30 // 还有三十条命
 5.  子元素存在引用引起的内存泄漏  
     原因：div中的ul li 得到这个div，会间接引用某个得到的li，那么此时因为div间接引用li，即使li被清空，也还是在内存中，并且只要li不被删除，他的父元素都不会被删除。  
     解决：手动删除清空。
+
+# 定时器
+
+setInterval() ：按照指定的周期（以毫秒计）来调用函数或计算表达式。方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
+
+setInterval(code,millisec,lang)
+参数	描述
+code	必需。要调用的函数或要执行的代码串。
+millisec	必须。周期性执行或调用 code 之间的时间间隔，以毫秒计。
+lang	可选。 JScript | VBScript | JavaScript
+
+setTimeout(code,millisec,lang)：在指定的毫秒数后调用函数或计算表达式。
+
+clearInterval（timer）
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)
 2. [详解JS中? ?和?. 和||的区别](https://www.jb51.net/article/251657.htm)
-3. [Closurs-JavaScript|MDN]([Closures - JavaScript | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures))
+3. [Closurs-JavaScript MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)

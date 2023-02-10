@@ -427,6 +427,7 @@ const FOO_KEY = Symbol('foo');
 
 # `...`扩展符
 
+## 接受的参数限制于65000以下
 js 中使用`...`扩展符,数量较大在65000以上时进行push会出错，
 由于
 ```
@@ -448,7 +449,7 @@ https://juejin.cn/post/7160449924209836039
 
 # 箭头函数
 
-## 箭头函数中的this
+## 普通函数和箭头函数中的this
 1.1 function函数
 var a = 0;
 function foo(){

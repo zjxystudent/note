@@ -36,6 +36,11 @@
 -   localStorage 数据会永久存储，除非代码删除或手动删除。
 -   sessionStorage 数据只存在于当前会话，浏览器关闭则清空。
 -   一般用 localStorage 会多一些。
+- 多窗口之间 sessionStorage 不可以共享状态，但是在某些场景下新开的页面会复制之前页面的 sessionStorage，相互之间无关联。
+``` js
+window.sessionStorage.setItem('sessionStorage_page1',11)
+// 设置sessionStorage
+```
 
 # 概念
 
