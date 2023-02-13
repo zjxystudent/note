@@ -1,3 +1,9 @@
+- `// @ts-check ` 自动类型推断功能
+- `// @ts-ignore`  单行忽略
+- `// @ts-nocheck`  忽略全文
+- `// @ts-check`  取消忽略全文
+
+
 # 类型操作
 ```ts
 interface Book {
