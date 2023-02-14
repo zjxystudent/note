@@ -24,3 +24,33 @@ revert-layer (en-US)
 
 unset
 将属性重置为自然值，也就是如果属性是自然继承那么就是 inherit，否则和 initial 一样
+
+
+
+# less
+
+& 内层选择器表示对父选择器的引用
+
+```css
+.demo{
+  &-title{
+    text-align:center;
+  }
+}
+/* 编译成 */
+.demo-title{
+  text-align:center;
+}
+```
+
+```css
+.demo{
+  &:after{
+    text-align:center;
+  }
+}
+/* 编译成 */
+.demo:after{
+  text-align:center;
+}
+```

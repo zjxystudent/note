@@ -274,6 +274,10 @@ lang	可选。 JScript | VBScript | JavaScript
 setTimeout(code,millisec,lang)：在指定的毫秒数后调用函数或计算表达式。
 
 clearInterval（timer）
+
+# call()
+
+
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)
