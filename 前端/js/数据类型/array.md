@@ -1,3 +1,10 @@
 https://juejin.cn/post/7196668320077250616
-for(let i in test) 获取属性
-for(let i of test) 获取值
+
+# 遍历
+
+## map
+不改变原数组，生成一个新数组
+## for in
+获取属性(对象获取属性，数组获取下标)
+## for of
+获取值

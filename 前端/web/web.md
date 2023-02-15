@@ -96,6 +96,9 @@ app.get('/listUsers', function (req, res) {
 
 SEO简介
 全称：Search Engine Optimization，搜索引擎优化。
+
+# 防抖 节流
+
 # 参考资料
 
 1. [mdn 浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)

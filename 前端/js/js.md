@@ -277,7 +277,33 @@ clearInterval（timer）
 
 # call()
 
+# 函数提升
 
+对于函数来说，只有函数声明会被提升到顶部，而函数表达式不会被提升。
+
+```js
+/* 函数声明 */
+
+foo(); // "bar"
+
+function foo() {
+  console.log("bar");
+}
+
+
+/* 函数表达式 */
+
+baz(); // 类型错误：baz 不是一个函数
+
+var baz = function() {
+  console.log("bar2");
+};
+```
+# issue
+
+**在JavaScript语言中调用普通的函数和调用对象的静态方法哪个效率高**
+
+调用普通函数的效率更高，因为它不需要访问对象的内部状态，而调用对象的静态方法需要访问对象的内部状态，这会增加访问时间。
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)

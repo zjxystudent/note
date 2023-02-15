@@ -19,8 +19,14 @@ v-model是标签外value的zi双向绑定，v-bind是标签内属性的单向绑
 
 # vue3的区别
 
-## 获取dom 
+## 操作真实的dom节点获取组件实例 
 
 ### vue2 通过 ref 和this.$refs.xxx
+1、使用this.$refs如果要在mouend()中使用，必须要在this.$nextTick(()=>{  } )   这里面实现，要不是找不到ref，原因是mouned（）之后，BOM节点还没有完全挂载上，于是找不到定义的ref。
+
+2、可以直接在updata()的生命周期函数中使用，不用写this.$nextTick(()=>{  } ) 
+
+
+3、在methods:{  } 方法中使用，也需要使用this.$nextTick(()=>{  } ) 等到页面完全渲染完毕之后在调用即可
 
 ### vue3 通过 ref 和 同名的const xxx=ref()
