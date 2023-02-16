@@ -1,5 +1,7 @@
 # http1.1
 
+# http2
+
 # HTTP3
 
 基于UDP协议
