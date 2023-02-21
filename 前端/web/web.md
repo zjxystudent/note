@@ -6,7 +6,7 @@
 2.  浏览器发送 HTTP 请求信息到服务器来请拷贝一份网页到客户端（你走到商店并下订单）。这条消息，包括其他所有在客户端和服务器之间传递的数据都是通过互联网使用 TCP/IP 协议传输的。
 3.  服务器同意客户端的请求后，会返回一个“200 OK”信息，意味着“你可以查看这个网页，给你～”，然后开始将网页的文件以数据包的形式传输到浏览器（商店给你商品，你将商品带回家）。
 4.  浏览器将数据包聚集成完整的网页然后将网页呈现给你（商品到了你的门口 —— 新东西，好棒！）。
-## web 存储
+# web 存储
 ### 1、cookie
 
 -   本身用于浏览器和 server 通讯。
@@ -20,10 +20,9 @@
 -   http 请求时需要发送到服务端，增加请求数量。
 -   只能用 document.cookie = '...' 来修改，太过简陋。
 
-### 2、session
+## Web Storage API
 
-是存储在服务器的
-
+Web Storage API 提供了存储机制，通过该机制，浏览器可以安全地存储键值对，比使用 cookie 更加直观。
 
 ### localStorage 和 sessionStorage
 
@@ -38,8 +37,25 @@
 -   一般用 localStorage 会多一些。
 - 多窗口之间 sessionStorage 不可以共享状态，但是在某些场景下新开的页面会复制之前页面的 sessionStorage，相互之间无关联。
 ``` js
-window.sessionStorage.setItem('sessionStorage_page1',11)
 // 设置sessionStorage
+window.sessionStorage.setItem('sessionStorage_page1',11)
+```
+### Window.localStorage
+一个可被用于访问当前源（origin）的本地存储空间的 `Storage` 对象。
+
+`localStorage` 中的键值对总是以字符串的形式存储。 (需要注意，和 js 对象相比，键值对总是以字符串的形式存储意味着数值类型会**自动转化为字符串类型**).
+
+>应注意，无论数据存储在 localStorage 还是 sessionStorage ，它们都特定于页面的协议。
+```js
+// 增加了一个数据项目。
+localStorage.setItem('myCat', 'Tom');
+// 该语法用于读取 localStorage 项，如下：
+let cat = localStorage.getItem('myCat');
+// 该语法用于移除 localStorage 项，如下：
+localStorage.removeItem('myCat');
+// 该语法用于移除所有的 localStorage 项，如下：
+localStorage.clear();
+
 ```
 
 # 概念

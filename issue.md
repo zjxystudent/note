@@ -17,8 +17,13 @@ https://github.com/996icu/996.ICU/blob/master/README_CN.md
 ![](../../../assert/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-02-09%20172733.png)
 ![](../../../assert/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-02-09%20172850.png)
 
+# ❓ 在JavaScript语言中调用普通的函数和调用对象的静态方法哪个效率高
+
+调用普通函数的效率更高，因为它不需要访问对象的内部状态，
+而调用对象的静态方法需要访问对象的内部状态，这会增加访问时间。
+
 # 🚩
 ## markdowm
 https://markdown.com.cn/cheat-sheet.html#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95
-## 💡
+## 
 基本的软件工程技术，包括软件设计、编程、数据库管理、网络技术、系统分析和设计等。此外，你还需要掌握前端开发技术，如HTML、CSS、JavaScript、Ajax、jQuery等，以及一些前端框架，如AngularJS、ReactJS等

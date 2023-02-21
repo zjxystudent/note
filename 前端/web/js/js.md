@@ -273,35 +273,7 @@ setTimeout(code,millisec,lang)：在指定的毫秒数后调用函数或计算�
 
 clearInterval（timer）
 
-# 方法 Function
 
-## 方法
-
-### Function.prototype.call()
-
-call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。
-
-```js
-function Product(name, price) {
-  this.name = name;
-  this.price = price;
-}
-
-function Food(name, price) {
-  Product.call(this, name, price);
-  this.category = 'food';
-}
-const test1=new Food('cheese', 5)
-console.log(test1.name);
-console.log(test1.price);
-console.log(test1.category);
-/* 
-Expected output: "cheese"
-Expected output: "5"
-Expected output: "food" 
-*/
-
- ```
 # 函数提升
 
 对于函数来说，只有函数声明会被提升到顶部，而函数表达式不会被提升。
@@ -327,18 +299,73 @@ var baz = function() {
 
 # this
 
+> `globalThis` 获取全局对象，无论代码是否在当前上下文运行
+
+## 指向全局上下文
+
+在全局执行环境中(在任何函数体外部)`this`指向**全局对象**
+```js
+// 在浏览器中，window 对象同时也是全局对象：
+console.log(this === window); // true
+
+a = 37;
+console.log(window.a); // 37
+
+this.b = "MDN";
+console.log(window.b)  // "MDN"
+console.log(b)         // "MDN"
+```
+## 函数上下文
+
+在函数内部，`this`的值取决于函数被调用的方式。
+
+不在严格模式下，且 `this` 的值不是由该调用设置的，所以 `this` 的值默认指向全局对象，浏览器中就是 `window`。
+在严格模式下，如果进入执行环境时没有设置 `this` 的值，`this` 会保持为 `undefined`：
+```js
+// 不是严格模式
+function f1(){
+  return this;
+}
+
+f1() === window; //在浏览器中：
+
+f1() === globalThis;//在 Node 中：
+
+// 严格模式
+function f2(){
+  "use strict"; 
+  return this;
+}
+
+f2() === undefined; 
+
+```
 ## 标准函数
 
 在网页的全局上下文中调用函数时，this指向windows
 this,指向方法使用时的上下文。
 如果在全局函数中调用，则 this 在非严格模式下等于 window，在严格模式下等于 undefined
 普通函数中的this指向是变化的（使用函数时的指向），谁调用的指向谁。
-
+```js
+var a = 0;
+function foo(){
+    console.log(this);
+    console.log(this.a);
+}
+foo(); // 1. window; 2. 0
+```
 ## 箭头函数
 
-箭头函数中的 this 会保留定义该函数时的上下文zhi
+箭头函数中的 this 会保留定义该函数时的上下文
 this,指向方法定义时的上下文
 箭头函数中的this指向是固定不变（定义函数时的指向），在vue中指向vue;
+```js
+var foo = () => {
+    console.log(this);
+    console.log(this.a)
+};
+foo();// 1. window; 2. 0
+```
 
 # proxy
 
@@ -458,155 +485,6 @@ Proxy(target, {
 });
 ```
 
-# Symbol
-
-表示**独一无二**的值，属于JavaScript的原生数据类型之一，其他数据类型是：`undefined`、`null`、布尔值（Boolean）、字符串（String）、数值（Number）、大整数（BigInt）、对象（Object）。
-
-Symbol 值通过`Symbol()`函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
-
-## 实例
-
-### 消除魔术字符串
-
-魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。
-
-```javascript
-function getArea(shape, options) {
-  let area = 0;
-
-  switch (shape) {
-    case 'Triangle': // 魔术字符串
-      area = .5 * options.width * options.height;
-      break;
-    /* ... more code ... */
-  }
-
-  return area;
-}
-
-getArea('Triangle', { width: 100, height: 100 }); // 魔术字符串
-```
-
-上面代码中，字符串`Triangle`就是一个魔术字符串。它多次出现，与代码形成“强耦合”，不利于将来的修改和维护。
-
-常用的消除魔术字符串的方法，就是把它写成一个变量。
-
-```javascript
-const shapeType = {
-  triangle: 'Triangle'
-};
-
-function getArea(shape, options) {
-  let area = 0;
-  switch (shape) {
-    case shapeType.triangle:
-      area = .5 * options.width * options.height;
-      break;
-  }
-  return area;
-}
-
-getArea(shapeType.triangle, { width: 100, height: 100 });
-```
-
-上面代码中，我们把`Triangle`写成`shapeType`对象的`triangle`属性，这样就消除了强耦合。
-
-如果仔细分析，可以发现`shapeType.triangle`等于哪个值并不重要，只要确保不会跟其他`shapeType`属性的值冲突即可。因此，这里就很适合改用 Symbol 值。
-
-```javascript
-const shapeType = {
-  triangle: Symbol()
-};
-```
-
-上面代码中，除了将`shapeType.triangle`的值设为一个 Symbol，其他地方都不用修改。
-
-***在typescript中可以用enum实现***
-
-```ts
-enum Role{
-  ADMIN,
-  VISITER,
-  EMPLOYEE
-}
-```
-
-### 模块的 Singleton 模式
-
-Singleton 模式指的是调用一个类，任何时候返回的都是同一个实例。
-
-对于 Node 来说，模块文件可以看成是一个类。怎么保证每次执行这个模块文件，返回的都是同一个实例呢？
-
-很容易想到，可以把实例放到顶层对象`global`。
-
-```javascript
-// mod.js
-function A() {
-  this.foo = 'hello';
-}
-
-if (!global._foo) {
-  global._foo = new A();
-}
-
-module.exports = global._foo;
-```
-
-然后，加载上面的`mod.js`。
-
-```javascript
-const a = require('./mod.js');
-console.log(a.foo);
-```
-
-上面代码中，变量`a`任何时候加载的都是`A`的同一个实例。
-
-但是，这里有一个问题，全局变量`global._foo`是可写的，任何文件都可以修改。
-
-```javascript
-global._foo = { foo: 'world' };
-
-const a = require('./mod.js');
-console.log(a.foo);
-```
-
-上面的代码，会使得加载`mod.js`的脚本都失真。
-
-为了防止这种情况出现，我们就可以使用 Symbol。
-
-```javascript
-// mod.js
-const FOO_KEY = Symbol.for('foo');
-
-function A() {
-  this.foo = 'hello';
-}
-
-if (!global[FOO_KEY]) {
-  global[FOO_KEY] = new A();
-}
-
-module.exports = global[FOO_KEY];
-```
-
-上面代码中，可以保证`global[FOO_KEY]`不会被无意间覆盖，但还是可以被改写。
-
-```javascript
-global[Symbol.for('foo')] = { foo: 'world' };
-
-const a = require('./mod.js');
-```
-
-如果键名使用`Symbol`方法生成，那么外部将无法引用这个值，当然也就无法改写。
-
-```javascript
-// mod.js
-const FOO_KEY = Symbol('foo');
-
-// 后面代码相同 ……
-```
-
-上面代码将导致其他脚本都无法引用`FOO_KEY`。但这样也有一个问题，就是如果多次执行这个脚本，每次得到的`FOO_KEY`都是不一样的。虽然 Node 会将脚本的执行结果缓存，一般情况下，不会多次执行同一个脚本，但是用户可以手动清除缓存，所以也不是绝对可靠。
 
 # `...`扩展符
 
@@ -624,7 +502,6 @@ item.push(...Items)
 等同于
 
 ```
-
 var item = [];
 var Items = new Array(1000000);
 item.push.apply(item, Items);
@@ -633,41 +510,14 @@ item.push.apply(item, Items);
 apply() 接受参数的有上限的65000
 <https://juejin.cn/post/7160449924209836039>
 
-# 箭头函数
+# 类型判断
 
-## 普通函数和箭头函数中的this
-
-1.1 function函数
-var a = 0;
-function foo(){
-    console.log(this);
-    console.log(this.a);
-}
-foo(); // 1. window; 2. 0
-1.2 箭头函数
-// 在箭头函数中
-var foo = () => {
-    console.log(this);
-    console.log(this.a)
-};
-foo();// 1. window; 2. 0
-
-###
-
-# issue
-
-**在JavaScript语言中调用普通的函数和调用对象的静态方法哪个效率高**
-
-调用普通函数的效率更高，因为它不需要访问对象的内部状态，
-
-而调用对象的静态方法需要访问对象的内部状态，这会增加访问时间。
-
+## typeof
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)
 1. [详解JS中? ?和?. 和||的区别](https://www.jb51.net/article/251657.htm)
 1. [Closurs-JavaScript MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
-
 1. [简书 《了解JS中的WeakMaps》 魂斗驴](https://www.jianshu.com/p/2cfb4d05e4c8)
 1. javaScript高级程序设计（第4版）
 1. [《ECMAScript 6 入门 》阮一峰](https://es6.ruanyifeng.com/#docs/symbol)
