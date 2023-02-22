@@ -27,3 +27,19 @@ https://github.com/996icu/996.ICU/blob/master/README_CN.md
 https://markdown.com.cn/cheat-sheet.html#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95
 ## 
 基本的软件工程技术，包括软件设计、编程、数据库管理、网络技术、系统分析和设计等。此外，你还需要掌握前端开发技术，如HTML、CSS、JavaScript、Ajax、jQuery等，以及一些前端框架，如AngularJS、ReactJS等
+
+
+# ❓win10中cmd输入python打开应用商店解决方法
+win10菜单搜索【管理应用执行别名】关闭下面两个按钮【应用安装程序】
+
+# 🚩Windows 设置环境变量（cmd）
+查看 set path
+
+所有的在cmd命令行下对环境变量的修改只对当前窗口有效，不是永久性的修改。也就是说当关闭此cmd命令行窗口后，将不再起作用。
+```cmd
+path=%path%;C:\python3.7
+```
+```powershell
+path=%path%;C:\python3.7\Scripts
+```
+# ❓pip下载超时Read timed out.

@@ -340,6 +340,11 @@ function f2(){
 f2() === undefined; 
 
 ```
+## 类
+类和模块的内部，默认就是严格模式
+
+类的方法内部如果含有this，它默认指向类的实例。但是，必须非常小心，一旦单独使用该方法，很可能报错。
+
 ## 标准函数
 
 在网页的全局上下文中调用函数时，this指向windows
@@ -437,6 +442,29 @@ function createWebService(baseUrl) {
 ```
 
 同理，Proxy 也可以用来实现数据库的 ORM 层
+# 运算符
+
+## 空值合并运算符 ??
+当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数。
+
+## AND &&
+
+```js
+expr1 && expr2
+```
+如果 expr1 可以转换为 true，则返回 expr2;否则，返回 expr1。
+如果一个值可以转换为 true，则该值就是所谓的真值。如果一个值可以转换为假，则该值就是所谓的假值。
+>JavaScript 中 falsy 值的例子 (在布尔值上下文中被转换为 false，从而绕过了 if 代码块):
+>- if (false)
+>- if (null)
+>- if (undefined)
+>- if (0)
+>- if (0n)
+>- if (NaN)
+>- if ('')
+>- if ("")
+>- if (``)
+>- if (document.all)//document.all 虽然是一个对象，但其转换为 boolean 类型是 false
 
 # Reflect
 
@@ -491,6 +519,10 @@ Proxy(target, {
 ## 接受的参数限制于65000以下
 
 js 中使用`...`扩展符,数量较大在65000以上时进行push会出错，
+``` powershell
+VM85:3 Uncaught RangeError: Maximum call stack size exceeded
+    at <anonymous>:3:6
+```
 由于
 
 ```
@@ -513,6 +545,7 @@ apply() 接受参数的有上限的65000
 # 类型判断
 
 ## typeof
+
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)

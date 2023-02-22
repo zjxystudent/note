@@ -49,8 +49,12 @@ window.sessionStorage.setItem('sessionStorage_page1',11)
 ```js
 // 增加了一个数据项目。
 localStorage.setItem('myCat', 'Tom');
+// 在存储已满的情况下，调用 setItem() 可能会抛出异常。开发人员应始终捕获 setItem() 可能抛出的异常。
+
 // 该语法用于读取 localStorage 项，如下：
 let cat = localStorage.getItem('myCat');
+// 如果键名不存在于存储中，则返回 null。
+
 // 该语法用于移除 localStorage 项，如下：
 localStorage.removeItem('myCat');
 // 该语法用于移除所有的 localStorage 项，如下：
