@@ -46,11 +46,10 @@ path=%path%;C:\python3.7\Scripts
 
 # ❓`<input type="file"> `文件上传后，修改文件内容重新上传后，控制台报错<font style="color:red">net：ERR_UPLOAD_FILE_CHANGED</font>，network，Request请求头显示黄色感叹号，并提示 Provisional headers are shown
 
-通过控制台发现，同名文件二次上传，@clicked方法没有被调用，
+通过f12对源代码打断点，同名文件二次上传，@clicked方法没有被调用，
 
 - 文件修改后file的本地文件已经丢失
 - 此文件已经变为另一个文件，如果没有其他用户操作（例如重新上传此文件），我们不能访问此文件，否则将是安全问题
-
 
 解决方法：将
 ```js

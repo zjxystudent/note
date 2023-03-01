@@ -1,7 +1,22 @@
 通过js的object.defineProperty()数据劫持,实现响应式，
 
 v-model是标签外value的zi双向绑定，v-bind是标签内属性的单向绑定，同时都支持数据的动态变化。
-
+# 输入框的回车事件 @keyup.enter
+```vue
+<template>
+<input v-model="search" @keyup.enter.native="onSearch" ></input>
+</template>
+<script>
+export default{
+  name:"search",
+  methods:{
+    onSearch(){
+      console.log("search")
+    }
+  }
+}
+</script>
+```
 # 单向数据流
 
 所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外变更父级组件的状态，从而导致你的应用的数据流向难以理解。

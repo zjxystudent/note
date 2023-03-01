@@ -1,7 +1,7 @@
 - `// @ts-check ` 自动类型推断功能
 - `// @ts-ignore`  单行忽略
 
-
+# 枚举 enum
 # 类型操作
 ```ts
 interface Book {
@@ -13,7 +13,7 @@ interface Book {
 }
 ```
 
-## Omit-去除属性
+## 去除属性 Omit
 
 ```ts
 export interface OmitType = Omit<Book, "ISBN" | "book_name" | "book_price">;
@@ -23,7 +23,7 @@ export interface OmitType = Omit<Book, "ISBN" | "book_name" | "book_price">;
 };
 ```
 
-## Pick-提取属性
+## 提取属性 Pick
 
 实际工作中，主要用来提取接口或 type 定义的对象类型中的属性
 ```ts
@@ -36,7 +36,7 @@ export interface PickType = Pick<Book, "ISBN" | "book_name" | "book_price">;
 };
 ```
 
-## Partial-属性全转为可选
+## 属性全转为可选 Partial
 
 ```typescript
 export interface PartialType= Partial<Book>
@@ -49,7 +49,7 @@ PartialType{
 }
 ```
 
-## Required-属性全转为必选
+## 属性全转为必选 Required
 
 ```typescript
 export interface RequiredType= Required<Book>
