@@ -117,10 +117,84 @@ app.get('/listUsers', function (req, res) {
 SEO简介
 全称：Search Engine Optimization，搜索引擎优化。
 
-# 防抖 节流
+#
+## FormData
+方便前后端对到手文件的处理。   采用formdata的话会把本次所有的form表单统一作为一个类型去发送，例如form action enctype采用FormData数据对象，那么在解析的时候就很好解析了，接收的是文件流，那么也是按文件流进行处理，服务端与客户端都省事了。
+理解常见的三种Content-Type
 
+- application/x-www-form-urlencoded ：会在url上拼接字符串，如：k=123&c=12241,同时对于中文还会转码。
+- application/json：直接会在请求体中 添加object对象 如： { a: 123, b: 456 }
+- multipart/form-data: 在network中可以看到添加带数据类型等各类标识的文件类型字符串请求体 告诉服务器端接收对象是一个文件数据流
+
+用json来传递的话，那么就必须得把这个原生的file对象进行转码，例如：base64，然后后端在接收的时候按照json来解析，获取那一段字符串之后重新转码生成图像文件，过程确实繁琐了
+
+# 防抖 节流
+## 防抖
+调整窗体大小获取最后一个值的操作
+```js
+/**
+ * @param
+ * @param {Number} wait
+ * @description 防抖
+ */
+function debounce(f, wait) {
+  let name = "Mozilla";
+  let timer;
+  return () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      name += "-";
+      console.log(name);
+      f;
+    }, wait);
+  };
+}
+const myFunc = debounce(console.log("hi"), 100);
+```
+
+## 节流
+```js
+
+/**
+ * @param
+ * @param {Number} wait
+ * @description 节流
+ */
+function throttle(f, wait) {
+  let name = "Mozilla";
+  let timer;
+  return () => {
+    if (timer) {
+      return;
+    }
+    timer = setTimeout(() => {
+      name += "-";
+      console.log(name);
+      f;
+      timer = undefined;
+    }, wait);
+  };
+}
+
+const myFunc1 = throttle(console.log("hi"), 200);
+function name() {
+  let sum = 0;
+  let time;
+  time = setInterval(() => {
+    sum++;
+    if (sum > 5) {
+      clearInterval(time);
+    }
+    myFunc1();
+  }, 100);
+}
+name();
+```
 # 参考资料
 
 1. [mdn 浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
 2. [15 张精美动图全面讲解 CORS](https://juejin.cn/post/6856556746706518024)
 3. [cors](https://web.dev/cross-origin-resource-sharing/?utm_source=devtools)
+1. [formData](https://developer.mozilla.org/zh-CN/docs/Web/API/FormData#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0)

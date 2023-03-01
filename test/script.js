@@ -1,11 +1,20 @@
-function idMaker() {
-  let index = 0;
-  return {
-    next: function() {
-      return { value: index++, done: false };
+// 1144
+/**
+ * 
+ * @param {Array<number>} params 
+ */
+function name(params) {
+    let sum=0;
+    let first=params.shift()
+    let isdouble=true;//偶数
+    while (params) {
+        if(isdouble&&first<params[0]){
+            sum=params[0]-first+1
+        }
+        isdouble=!isdouble
+        first=params.shift()
     }
-  };
+    return sum;
 }
-const it = idMaker();
-it.next().value 
-console.log(it.next().value )
+const test1=[1,2,3]
+console.log(name(test1))

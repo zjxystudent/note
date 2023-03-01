@@ -465,8 +465,6 @@ expr1 && expr2
 >- if ("")
 >- if (``)
 >- if (document.all)//document.all 虽然是一个对象，但其转换为 boolean 类型是 false
-# 定时器
-
 
 
 # Reflect
