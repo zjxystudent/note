@@ -5,7 +5,7 @@ https://blog.csdn.net/Rae_1999/article/details/124474387
 reject 996:
 https://github.com/996icu/996.ICU/blob/master/README_CN.md
 
-# ❓ beforeEnter 和 beforeRouteEnter 的区别
+# ❓ vue-router中 beforeEnter 和 beforeRouteEnter 的区别
 - beforeEnter 在路由上直接配置的
 - beforeRouteEnter写在组件内
 - beforeEnter是在路由被激活之前调用，而beforeRouteEnter是在组件实例化之前调用，因此beforeRouteEnter可以访问组件实例，而beforeEnter不能。
@@ -59,4 +59,6 @@ this.$refs.xxx.value = "";
 # 🚩模糊查询
 https://www.jianshu.com/p/4cd4f74a0b20
 
-#
+# 🚩vue中data,method 命名重复
+
+重复的命名会覆盖掉，判断顺序为props,methods,data,computed,watch.
