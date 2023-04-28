@@ -547,6 +547,11 @@ apply() 接受参数的有上限的65000
 
 ## typeof
 
+用来判断基本的数据结构【string,number,boolean,undefind,object,symbol,function】
+
+## instanceof
+
+
 # 参考资料
 
 1. [知乎《我不知道的JS之delete操作符》卢伟](https://zhuanlan.zhihu.com/p/149975274)
