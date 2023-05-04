@@ -14,21 +14,6 @@ $\underline{test}$
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $$H(D_2) = -\left(\frac{2}{4}\log_2 \frac{2}{4} + \frac{2}{4}\log_2 \frac{2}{4}\right) = 1$$
 
 
