@@ -1,12 +1,7 @@
 ~~test~~
 
-==test==
 
 $\underline{test}$
-```markdown
-链接：[文字](链接)
-脚注：[文字](脚注解释 "脚注名字")
-```
 
 有人认为在[大前端时代](https://en.wikipedia.org/wiki/Front-end_web_development "Front-end web development")的背景下，移动端开发（Android、IOS）将逐步退出历史舞台。
 

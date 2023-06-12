@@ -11,6 +11,19 @@
 |@version|@version XX.XX.XX|描述此函数的版本号|@version 1.0.3|
 |@example|@example 示例代码|演示函数的使用|@example setTitle(‘测试’)|
 
+/**
+ * @typedef UseFileDialogOptions
+ * @property {boolean=} multiple
+ * @property {string=} accept
+ * @property {string=} capture
+ * @property {boolean=} webkitdirectory
+ */
+/**
+ * 
+ * @param {{onChange?:(event)=>void,options?:UseFileDialogOptions}} param0 
+ * @returns 
+ */
+
 1.[jsDoc](https://www.jsdoc.com.cn/tags-author)
 
 2.[ts编程规范](https://bosens-china.github.io/Typescript-manual/download/zh/wiki/coding_guidelines.html#%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95)
