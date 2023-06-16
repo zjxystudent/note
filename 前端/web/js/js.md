@@ -551,6 +551,11 @@ apply() 接受参数的有上限的65000
 
 ## instanceof
 
+# js事件流
+window->事件触发处->window
+
+- addEventListener(el,(event)=>{},true),获取捕获事件
+- addEventListener(el,(event)=>{}),获取冒泡事件
 
 # 参考资料
 
